@@ -7,7 +7,8 @@ import time
 import logging
 from datetime import datetime
 
-#AWS Keys
+# AWS Keys
+# Provide Access Key infromation and Secrete key
 auth = {"aws_access_key_id": "<access-key>", "aws_secret_access_key": "<secrete-key>"}
 
 # Setup logging
@@ -32,7 +33,7 @@ def main():
  else:
    print "Usage: python aws.py {start|stop}\n"
 
-# Start ec2 Instances in TechOps
+# Start ec2 Instances in AWS Environment
 def startInstance():
  logging.info("Starting the Instance..... ")
 
@@ -48,6 +49,7 @@ def startInstance():
   reservations = ec2.get_all_instances()
   for reservation in reservations:
     for instances in reservation.instances:
+        # checking the status of instance. If the instance is stopped start the instance.
       if instances.state == "stopped":
        description = 'Starting %(Instance_Name)s with instanceId %(Instance_Id)s which is in %(Instance_State)s state at %(date)s' % {
          'Instance_Name': instances.tags["Name"],
@@ -64,7 +66,7 @@ def startInstance():
    sys.exit(0)
 
 
-# Stop ec2 Instances in TechOps
+# Stop ec2 Instances in AWS Environment
 def stopInstance():
  logging.info("Stoping the Instances..... ")
 
@@ -80,6 +82,7 @@ def stopInstance():
   reservations = ec2.get_all_instances()
   for reservation in reservations:
     for instances in reservation.instances:
+        # checking the status of instance. If the Instance is running Stop the Instance
       if instances.state == "running":
        description = 'Stoping %(Instance_Name)s with instanceId %(Instance_Id)s which is in %(Instance_State)s state at %(date)s' % {
          'Instance_Name': instances.tags["Name"],
