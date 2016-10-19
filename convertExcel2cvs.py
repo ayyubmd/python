@@ -1,4 +1,5 @@
 # Python script to convert Excel file to csv File
+# Usage convertExcel2cvs.py <excel_file.xls>
 import xlrd
 import csv
 from os import sys
