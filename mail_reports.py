@@ -82,7 +82,7 @@ def send_mail(company, listofmails):
         print msg
         sys.exit(1)
 
- server = smtplib.SMTP('relay.jangosmtp.net',25)
+ server = smtplib.SMTP('example.jangosmtp.net',25)
  server.ehlo()
  server.ehlo()
  server.login(username,password)
